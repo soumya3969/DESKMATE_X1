@@ -124,7 +124,7 @@ export default function Hero() {
         <FloatingOrb />
       </div>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-12 px-5 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-12 px-5 pb-32 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:pb-0">
         <div>
           <motion.span
             variants={fade}
