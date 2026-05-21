@@ -11,7 +11,7 @@ export default function TechSpecs() {
         subtitle="A maker-grade stack chosen for reliability, low power and room to hack."
       />
 
-      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 sm:gap-4">
         {TECH_SPECS.map((s, i) => (
           <motion.div
             key={s.label}
@@ -23,7 +23,7 @@ export default function TechSpecs() {
             className="group relative overflow-hidden rounded-2xl"
           >
             <div className="border-gradient relative h-full rounded-2xl">
-              <div className="glass relative h-full overflow-hidden rounded-2xl p-5">
+              <div className="glass relative h-full overflow-hidden flex flex-col items-center text-center sm:items-start sm:text-left rounded-2xl p-5">
                 <div className="pointer-events-none absolute -bottom-6 -right-6 h-20 w-20 rounded-full bg-neon-blue/20 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
                 <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-neon-cyan">
                   <s.icon className="h-5 w-5" />

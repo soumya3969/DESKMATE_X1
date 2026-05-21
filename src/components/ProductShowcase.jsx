@@ -118,7 +118,7 @@ function FloatingChip({ icon: Icon, label, value, className, delay }) {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ delay }}
-      className={`glass-strong absolute z-20 flex items-center gap-3 rounded-2xl px-4 py-3 shadow-card ${className}`}
+      className={`glass-strong z-20 flex items-center gap-3 rounded-2xl px-4 py-3 shadow-card ${className}`}
     >
       <motion.span
         animate={{ y: [0, -6, 0] }}
@@ -149,38 +149,45 @@ export default function ProductShowcase() {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="relative mx-auto flex max-w-2xl items-center justify-center py-10"
+        className="relative mx-auto flex flex-col max-w-2xl items-center justify-center py-10"
       >
         <FloatingChip
           icon={Thermometer}
           label="Room Temp"
           value="23.4°C"
           delay={0.2}
-          className="left-0 top-6 sm:-left-6"
+          className="absolute hidden sm:flex left-0 top-6 sm:-left-6"
         />
         <FloatingChip
           icon={BatteryCharging}
           label="Battery"
           value="92% · USB-C"
           delay={0.35}
-          className="bottom-10 left-2 sm:-left-8"
+          className="absolute hidden sm:flex bottom-10 left-2 sm:-left-8"
         />
         <FloatingChip
           icon={CloudSun}
           label="Weather Sync"
           value="Live · 24°C"
           delay={0.5}
-          className="right-0 top-12 sm:-right-6"
+          className="absolute hidden sm:flex right-0 top-12 sm:-right-6"
         />
         <FloatingChip
           icon={Droplets}
           label="Humidity"
           value="48% RH"
           delay={0.65}
-          className="bottom-8 right-2 sm:-right-8"
+          className="absolute hidden sm:flex bottom-8 right-2 sm:-right-8"
         />
 
         <RoundDashboard />
+
+        <div className="mt-12 grid w-full grid-cols-1 gap-4 sm:hidden">
+          <FloatingChip icon={Thermometer} label="Room Temp" value="23.4°C" delay={0.2} className="relative w-full" />
+          <FloatingChip icon={BatteryCharging} label="Battery" value="92% · USB-C" delay={0.35} className="relative w-full" />
+          <FloatingChip icon={CloudSun} label="Weather Sync" value="Live · 24°C" delay={0.5} className="relative w-full" />
+          <FloatingChip icon={Droplets} label="Humidity" value="48% RH" delay={0.65} className="relative w-full" />
+        </div>
       </motion.div>
     </section>
   )

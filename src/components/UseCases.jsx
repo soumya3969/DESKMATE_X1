@@ -23,7 +23,7 @@ export default function UseCases() {
             className="group relative overflow-hidden rounded-3xl"
           >
             <div className="border-gradient relative h-full rounded-3xl">
-              <div className="glass relative flex h-full flex-col overflow-hidden rounded-3xl p-7">
+              <div className="glass relative flex h-full flex-col items-center text-center sm:items-start sm:text-left overflow-hidden rounded-3xl p-7">
                 <div className="pointer-events-none absolute inset-0 bg-aurora opacity-0 transition-opacity duration-500 group-hover:opacity-[0.06]" />
 
                 <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-neon-violet transition-transform duration-500 group-hover:scale-110 group-hover:text-neon-cyan">

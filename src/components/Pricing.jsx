@@ -35,7 +35,7 @@ export default function Pricing() {
                 )}
 
                 <div className="relative flex items-center justify-between">
-                  <h3 className="font-display text-2xl font-bold">{plan.name}</h3>
+                  <h3 className="font-display md:text-2xl text-lg font-bold">{plan.name}</h3>
                   <span
                     className={`rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-widest ${
                       plan.highlight

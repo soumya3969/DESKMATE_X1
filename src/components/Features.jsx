@@ -64,11 +64,11 @@ export default function Features() {
                   className={`pointer-events-none absolute -right-8 -top-8 h-28 w-28 rounded-full bg-gradient-to-br ${f.accent} to-transparent opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100`}
                 />
                 <div className="relative">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-3 sm:gap-0">
                     <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-neon-blue transition-colors group-hover:text-neon-cyan">
                       <f.icon className="h-5 w-5" />
                     </span>
-                    <div className="text-right">
+                    <div className="text-center sm:text-right">
                       <p className="font-mono text-lg font-semibold text-white">{f.metric}</p>
                       <p className="font-mono text-[9px] uppercase tracking-widest text-white/40">
                         {f.metricLabel}
@@ -76,8 +76,8 @@ export default function Features() {
                     </div>
                   </div>
 
-                  <h3 className="mt-5 font-display text-lg font-semibold">{f.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/55">{f.desc}</p>
+                  <h3 className="mt-5 font-display text-lg font-semibold text-center sm:text-left">{f.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/55 text-center sm:text-left">{f.desc}</p>
 
                   <div className="mt-4 h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
                   <div className="mt-3 flex gap-1">

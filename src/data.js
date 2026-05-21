@@ -127,7 +127,7 @@ export const TECH_SPECS = [
   { label: 'Climate Sensor', value: 'BME280', sub: 'Temp · Humidity · Pressure', icon: Thermometer },
   { label: 'Light Sensor', value: 'BH1750', sub: 'Ambient lux auto-dim', icon: Sun },
   { label: 'RGB Lighting', value: 'WS2812', sub: 'Addressable LEDs', icon: Lightbulb },
-  { label: 'Battery', value: 'LiPo', sub: 'Rechargeable cell', icon: BatteryCharging },
+  { label: 'Battery', value: 'LiPo', sub: '2000mAh Rechargeable cell', icon: BatteryCharging },
   { label: 'Charging', value: 'USB-C', sub: 'Fast & reversible', icon: CircuitBoard },
 ]
 

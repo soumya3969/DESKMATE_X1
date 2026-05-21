@@ -118,13 +118,13 @@ function ProductMockup() {
 
 export default function Hero() {
   return (
-    <section id="top" className="relative flex min-h-screen items-center overflow-hidden pt-28 pb-16">
+    <section id="top" className="relative flex min-h-screen flex-col justify-center overflow-hidden pt-28 pb-16 lg:items-center">
       {/* 3D object layer */}
       <div className="absolute inset-0 z-0 opacity-90 md:left-1/4">
         <FloatingOrb />
       </div>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-12 px-5 pb-32 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:pb-0">
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-12 px-5 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div>
           <motion.span
             variants={fade}
@@ -142,7 +142,7 @@ export default function Hero() {
             initial="hidden"
             animate="show"
             custom={1}
-            className="mt-6 font-display text-5xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl"
+            className="mt-6 font-display text-4xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl"
           >
             Your Smart <br />
             <span className="text-gradient-aurora animate-shimmer">Desk Companion</span>
@@ -164,18 +164,18 @@ export default function Hero() {
             initial="hidden"
             animate="show"
             custom={3}
-            className="mt-8 flex flex-wrap items-center gap-4"
+            className="mt-8 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-4"
           >
             <a
               href="#waitlist"
-              className="group inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-semibold text-black transition-transform hover:scale-[1.03]"
+              className="group inline-flex justify-center items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-semibold text-black transition-transform hover:scale-[1.03]"
             >
               Join Waitlist
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#showcase"
-              className="group inline-flex items-center gap-2 rounded-xl border border-white/15 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-white/5"
+              className="group inline-flex justify-center items-center gap-2 rounded-xl border border-white/15 px-6 py-3.5 font-semibold text-white transition-colors hover:bg-white/5"
             >
               <Play className="h-4 w-4 text-neon-cyan" />
               Watch Demo
@@ -215,7 +215,7 @@ export default function Hero() {
         initial="hidden"
         animate="show"
         custom={6}
-        className="absolute inset-x-0 bottom-6 z-10 mx-auto flex max-w-3xl flex-wrap justify-center gap-x-10 gap-y-3 px-5"
+        className="relative z-10 mx-auto mt-16 flex max-w-3xl flex-wrap justify-center gap-x-10 gap-y-6 px-5 lg:absolute lg:inset-x-0 lg:bottom-6 lg:mt-0 lg:gap-y-3"
       >
         {STATS.map((s) => (
           <div key={s.label} className="text-center">
