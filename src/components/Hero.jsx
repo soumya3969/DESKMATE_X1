@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Play, ArrowRight, CloudSun, Wifi, BatteryCharging } from 'lucide-react'
 import FloatingOrb from './FloatingOrb.jsx'
 import { STATUS_PILLS, STATS } from '../data.js'
+import { useWeather } from '../hooks/useWeather'
 
 const fade = {
   hidden: { opacity: 0, y: 24 },
@@ -33,6 +34,18 @@ function LiveClock() {
 }
 
 function ProductMockup() {
+  const { city, temperature, description } = useWeather();
+  const [dayName, setDayName] = useState('Thursday');
+
+  useEffect(() => {
+    const updateDay = () => {
+      setDayName(new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(new Date()));
+    };
+    updateDay();
+    const id = setInterval(updateDay, 60000);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <motion.div
       variants={fade}
@@ -59,7 +72,7 @@ function ProductMockup() {
           </div>
 
           <LiveClock />
-          <p className="mt-1 font-mono text-xs text-white/40">Thursday · Bengaluru</p>
+          <p className="mt-1 font-mono text-xs text-white/40">{dayName} · {city}</p>
 
           <div className="mt-6 grid grid-cols-2 gap-3">
             <div className="glass rounded-2xl p-3.5">
@@ -69,8 +82,8 @@ function ProductMockup() {
                   Weather
                 </span>
               </div>
-              <p className="mt-2 font-display text-2xl font-bold">24°C</p>
-              <p className="font-mono text-[10px] text-white/40">Partly cloudy</p>
+              <p className="mt-2 font-display text-2xl font-bold">{temperature}°C</p>
+              <p className="font-mono text-[10px] text-white/40">{description}</p>
             </div>
             <div className="glass rounded-2xl p-3.5">
               <div className="flex items-center gap-2 text-neon-violet">

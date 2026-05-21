@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Thermometer, Droplets, CloudSun, BatteryCharging } from 'lucide-react'
 import { SectionHeading } from './Features.jsx'
+import { useWeather } from '../hooks/useWeather'
 
 function RoundDashboard() {
+  const { temperature } = useWeather();
   const [now, setNow] = useState(new Date())
   useEffect(() => {
     const id = setInterval(() => setNow(new Date()), 1000)
@@ -98,7 +100,7 @@ function RoundDashboard() {
           <div className="mt-3 flex items-center gap-3 font-mono text-xs text-white/60">
             <span className="flex items-center gap-1">
               <CloudSun className="h-3.5 w-3.5 text-neon-cyan" />
-              24°
+              {temperature}°
             </span>
             <span className="flex items-center gap-1">
               <Droplets className="h-3.5 w-3.5 text-neon-blue" />
@@ -136,6 +138,8 @@ function FloatingChip({ icon: Icon, label, value, className, delay }) {
 }
 
 export default function ProductShowcase() {
+  const { temperature } = useWeather();
+
   return (
     <section id="showcase" className="relative mx-auto max-w-6xl px-5 py-24 sm:py-32">
       <SectionHeading
@@ -168,7 +172,7 @@ export default function ProductShowcase() {
         <FloatingChip
           icon={CloudSun}
           label="Weather Sync"
-          value="Live · 24°C"
+          value={`Live · ${temperature}°C`}
           delay={0.5}
           className="absolute hidden sm:flex right-0 top-12 sm:-right-6"
         />
@@ -185,7 +189,7 @@ export default function ProductShowcase() {
         <div className="mt-12 grid w-full grid-cols-1 gap-4 sm:hidden">
           <FloatingChip icon={Thermometer} label="Room Temp" value="23.4°C" delay={0.2} className="relative w-full" />
           <FloatingChip icon={BatteryCharging} label="Battery" value="92% · USB-C" delay={0.35} className="relative w-full" />
-          <FloatingChip icon={CloudSun} label="Weather Sync" value="Live · 24°C" delay={0.5} className="relative w-full" />
+          <FloatingChip icon={CloudSun} label="Weather Sync" value={`Live · ${temperature}°C`} delay={0.5} className="relative w-full" />
           <FloatingChip icon={Droplets} label="Humidity" value="48% RH" delay={0.65} className="relative w-full" />
         </div>
       </motion.div>
