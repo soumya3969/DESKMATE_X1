@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FEATURES } from '../data.js'
+import { useWeather } from '../hooks/useWeather'
 
 function SectionHeading({ kicker, title, subtitle }) {
   return (
@@ -39,6 +41,32 @@ function SectionHeading({ kicker, title, subtitle }) {
 export { SectionHeading }
 
 export default function Features() {
+  const { temperature, description } = useWeather();
+  const [now, setNow] = useState(new Date());
+
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const hh = now.getHours().toString().padStart(2, '0');
+  const mm = now.getMinutes().toString().padStart(2, '0');
+  const currentTime = `${hh}:${mm}`;
+
+  const dynamicFeatures = FEATURES.map((f) => {
+    if (f.title === 'Smart Clock') {
+      return { ...f, metric: currentTime };
+    }
+    if (f.title === 'Weather Sync') {
+      return { 
+        ...f, 
+        metric: `${temperature}°C`, 
+        metricLabel: description.toUpperCase() 
+      };
+    }
+    return f;
+  });
+
   return (
     <section id="features" className="relative mx-auto max-w-6xl px-5 py-24 sm:py-32">
       <SectionHeading
@@ -48,7 +76,7 @@ export default function Features() {
       />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {FEATURES.map((f, i) => (
+        {dynamicFeatures.map((f, i) => (
           <motion.div
             key={f.title}
             initial={{ opacity: 0, y: 30 }}

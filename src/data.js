@@ -135,8 +135,8 @@ export const PRICING = [
   {
     name: 'Early Access',
     tagline: 'For the first wave of desk pioneers.',
-    price: '$59',
-    original: '$89',
+    price: '₹4999',
+    original: '₹6999',
     badge: 'LIMITED',
     highlight: false,
     perks: [
@@ -151,8 +151,8 @@ export const PRICING = [
   {
     name: 'Creator Edition',
     tagline: 'Maxed-out hardware for power desks.',
-    price: '$89',
-    original: '$129',
+    price: '₹7999',
+    original: '₹9999',
     badge: 'MOST POPULAR',
     highlight: true,
     perks: [
