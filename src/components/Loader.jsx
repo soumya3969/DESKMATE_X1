@@ -5,13 +5,28 @@ export default function Loader() {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setProgress((p) => {
-        const next = p + Math.random() * 14
-        return next >= 100 ? 100 : next
-      })
-    }, 140)
-    return () => clearInterval(id)
+    const startedAt = performance.now()
+    const completionDurationMs = 1000
+    let frameId = 0
+
+    const tick = () => {
+      const elapsedMs = performance.now() - startedAt
+      const normalized = Math.min(1, elapsedMs / completionDurationMs)
+      const eased = 1 - Math.pow(1 - normalized, 3)
+      const nextProgress = eased * 100
+
+      setProgress((previous) => (nextProgress > previous ? nextProgress : previous))
+
+      if (normalized < 1) {
+        frameId = window.requestAnimationFrame(tick)
+      }
+    }
+
+    frameId = window.requestAnimationFrame(tick)
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+    }
   }, [])
 
   return (
@@ -53,7 +68,8 @@ export default function Loader() {
         <div className="mt-6 h-[3px] w-56 overflow-hidden rounded-full bg-white/10">
           <motion.div
             className="h-full rounded-full bg-aurora"
-            style={{ width: `${progress}%` }}
+            animate={{ width: `${progress}%` }}
+            transition={{ duration: 0.16, ease: 'easeOut' }}
           />
         </div>
         <p className="mt-3 font-mono text-[10px] tracking-widest text-white/40">

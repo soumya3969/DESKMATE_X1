@@ -1,7 +1,8 @@
-import { useEffect, useState, useRef } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { AnimatePresence, motion, useMotionValue } from 'framer-motion'
 import Loader from './components/Loader.jsx'
-import Home from './pages/Home.jsx'
+
+const Home = lazy(() => import('./pages/Home.jsx'))
 
 function CursorGlow() {
   const [hidden, setHidden] = useState(true)
@@ -48,8 +49,37 @@ export default function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 2600)
-    return () => clearTimeout(t)
+    const minimumLoaderDurationMs = 1100
+    const startedAt = performance.now()
+    let closeTimeoutId
+
+    const closeLoader = () => {
+      const elapsedMs = performance.now() - startedAt
+      const remainingMs = Math.max(0, minimumLoaderDurationMs - elapsedMs)
+
+      closeTimeoutId = window.setTimeout(() => {
+        setLoading(false)
+      }, remainingMs)
+    }
+
+    const closeAfterPaint = () => {
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          closeLoader()
+        })
+      })
+    }
+
+    if (document.readyState === 'complete') {
+      closeAfterPaint()
+    } else {
+      window.addEventListener('load', closeAfterPaint, { once: true })
+    }
+
+    return () => {
+      window.clearTimeout(closeTimeoutId)
+      window.removeEventListener('load', closeAfterPaint)
+    }
   }, [])
 
   useEffect(() => {
@@ -62,7 +92,11 @@ export default function App() {
         {loading && <Loader key="loader" />}
       </AnimatePresence>
       <CursorGlow />
-      <Home />
+      {!loading && (
+        <Suspense fallback={null}>
+          <Home />
+        </Suspense>
+      )}
     </>
   )
 }
